@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -19,3 +20,13 @@ def get_events():
 
 if __name__ == '__main__':
     app.run(debug=True)
+=======
+# Back End team — flask server
+# Connect the frontend to orbital_calculator.py, event_detector.py, and database.py
+# Run with: python backend/app.py
+# Test at: localhost:5000/api/positions?date=2017-08-21
+
+
+
+# hello world
+>>>>>>> Stashed changes
