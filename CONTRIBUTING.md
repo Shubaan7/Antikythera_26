@@ -1,7 +1,7 @@
 # Contributing Rules — Read Before You Touch Anything
 
 ## Golden Rules
-1. Never commit directly to main. Ever.
+1. Never commit directly to main. 
 2. Always pull before you start working.
 3. Stay in your team folder. Do not touch other teams files.
 4. Write a real commit message every time.
@@ -63,5 +63,4 @@ Front End — one webpage with a date picker, solar system canvas diagram, and e
 Content — 50 verified real historical events in events.csv loaded into SQLite database
 
 ## Contact
-Any questions, conflicts, or broken code — post in Discord immediately.
-Do not guess. Do not stay stuck. Ask.
+Any questions, conflicts, or broken code — post in Discord.
