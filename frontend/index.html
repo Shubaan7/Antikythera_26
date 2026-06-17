@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,9 +56,167 @@
         <!-- TODO: Front End team renders rows here -->
       </tbody>
     </table>
+=======
+<!-- Front End team — main page -->
+<!-- Build the layout: header, date picker, solar system canvas, events panel, event browser screen -->
+<!-- Connect to style.css for styling, app.js for logic, diagram.js for the canvas drawing -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antikythera — Astronomical Event Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <span class="topbar__logo">ANTIKYTHERA</span>
+      <span class="topbar__tagline">ASTRONOMICAL EVENT BROWSER</span>
+    </div>
+    <div class="topbar__centre" id="topbarDate">—</div>
+    <div class="topbar__right">
+      <span class="topbar__status" id="topbarStatus">NO DATE SELECTED</span>
+    </div>
+  </header>
+
+  <!-- THREE COLUMN LAYOUT -->
+  <div class="app-layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="left-panel">
+
+      <div class="panel-section">
+        <p class="panel-label">SELECT DATE</p>
+        <div class="date-inputs">
+          <div class="date-field">
+            <span class="date-field__hint">YYYY · MM · DD</span>
+            <div class="date-field__row">
+              <input type="number" id="inputYear"  class="date-part" placeholder="YYYY" min="1950" max="2030" />
+              <span class="date-sep">·</span>
+              <input type="number" id="inputMonth" class="date-part" placeholder="MM"   min="1"    max="12"   />
+              <span class="date-sep">·</span>
+              <input type="number" id="inputDay"   class="date-part" placeholder="DD"   min="1"    max="31"   />
+            </div>
+          </div>
+          <button class="btn-compute" id="btnCompute">COMPUTE POSITIONS</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <p class="panel-label">HISTORICAL EVENTS</p>
+        <div class="quick-events" id="quickEvents">
+          <div class="quick-event" data-date="2017-08-21" data-type="Eclipse">
+            <span class="quick-event__date">2017 · 08 · 21</span>
+            <span class="quick-event__type eclipse">Eclipse</span>
+          </div>
+          <div class="quick-event" data-date="2020-12-21" data-type="Conjunction">
+            <span class="quick-event__date">2020 · 12 · 21</span>
+            <span class="quick-event__type conjunction">Conjunction</span>
+          </div>
+          <div class="quick-event" data-date="1982-03-10" data-type="Alignment">
+            <span class="quick-event__date">1982 · 03 · 10</span>
+            <span class="quick-event__type alignment">Alignment</span>
+          </div>
+          <div class="quick-event" data-date="1991-07-11" data-type="Eclipse">
+            <span class="quick-event__date">1991 · 07 · 11</span>
+            <span class="quick-event__type eclipse">Eclipse</span>
+          </div>
+          <div class="quick-event" data-date="2024-04-08" data-type="Eclipse">
+            <span class="quick-event__date">2024 · 04 · 08</span>
+            <span class="quick-event__type eclipse">Eclipse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <p class="panel-label">FILTER EVENTS</p>
+        <div class="filter-list">
+          <div class="filter-item active" data-filter="eclipse">
+            <span class="filter-dot eclipse"></span>
+            <span class="filter-name">Eclipse</span>
+            <span class="filter-count" id="countEclipse">—</span>
+          </div>
+          <div class="filter-item active" data-filter="conjunction">
+            <span class="filter-dot conjunction"></span>
+            <span class="filter-name">Conjunction</span>
+            <span class="filter-count" id="countConjunction">—</span>
+          </div>
+          <div class="filter-item active" data-filter="alignment">
+            <span class="filter-dot alignment"></span>
+            <span class="filter-name">Alignment</span>
+            <span class="filter-count" id="countAlignment">—</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- CENTRE PANEL -->
+    <section class="centre-panel">
+      <div class="centre-top-bar">
+        <span class="centre-label">SOLAR SYSTEM · TOP-DOWN VIEW · ECLIPTIC PLANE</span>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="solarCanvas"></canvas>
+      </div>
+      <div class="centre-bottom-bar">
+        <span class="bottom-stat"><span class="bottom-stat__label">Date</span> <span id="statDate">—</span></span>
+        <span class="bottom-stat"><span class="bottom-stat__label">Bodies shown</span> <span>6</span></span>
+        <span class="bottom-stat"><span class="bottom-stat__label">Range</span> <span>1950 – 2030</span></span>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <aside class="right-panel">
+
+      <div class="panel-section">
+        <p class="panel-label">ASTRONOMICAL EVENTS · 1950–2030</p>
+        <div class="search-wrap">
+          <input type="text" id="searchInput" class="event-search" placeholder="Search events, planets…" />
+        </div>
+      </div>
+
+      <div class="event-list" id="eventList">
+        <p class="event-list__empty">Click a historical event or enter a date to load events.</p>
+      </div>
+
+      <div class="event-detail hidden" id="eventDetail">
+        <p class="event-detail__type" id="detailType"></p>
+        <h2 class="event-detail__title" id="detailTitle"></h2>
+        <p class="event-detail__desc" id="detailDesc"></p>
+        <div class="event-detail__grid">
+          <div>
+            <p class="detail-label">DATE</p>
+            <p class="detail-value" id="detailDate"></p>
+          </div>
+          <div>
+            <p class="detail-label">TYPE</p>
+            <p class="detail-value" id="detailTypeVal"></p>
+          </div>
+          <div>
+            <p class="detail-label">BODIES</p>
+            <p class="detail-value" id="detailBodies"></p>
+          </div>
+          <div>
+            <p class="detail-label">VERIFIED</p>
+            <p class="detail-value verified">✓ Historical</p>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+>>>>>>> Stashed changes
   </div>
 
   <script src="diagram.js"></script>
   <script src="app.js"></script>
 </body>
+<<<<<<< Updated upstream
 </html>
+=======
+</html>
+>>>>>>> Stashed changes
